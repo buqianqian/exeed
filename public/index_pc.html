@@ -1,0 +1,83 @@
+﻿<html>
+<head>
+<title>EXEED星途</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1.0, user-scalable=0" />
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+<!-- 适应移动端end -->
+<script type="text/javascript" src="js/goto_pc.js"></script>
+
+<script language="javascript">  
+
+document.ontouchmove = function(e){ e.preventDefault(); };
+var webOn;
+var web;
+function imgdragstart(){return false;}  
+
+window.onresize=function(){  
+	var uiWx=document.body.clientWidth ;
+	var uiHy=document.body.clientHeight;
+	
+	document.getElementById("zy1").style.left=(uiWx-600)/2;
+	//document.getElementById("bjT").style.width=uiWx;
+	//document.getElementById("bjT").style.height=uiHy;
+} 
+
+</script> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-137805623-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-137805623-1');
+</script>
+
+<script type="text/javascript" src="js/data.js"></script>
+
+<style type="text/css">
+body{
+	/* overflow:scroll;
+	overflow-x:hidden !important;
+	overflow-y:hidden !important; */
+}
+</style>
+
+<style type="text/css">
+<!--
+.STYLE1 {
+	font-size: 18px;
+	color: #FFFFFF;
+}
+
+.STYLE5 {
+	font-size: 24px;
+	color: #000000;
+}
+-->
+
+</style>
+</head>
+<body onLoad="OnDl();" ondrag="return false" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div id="zy1" style="position: absolute; height:100%;  z-index:0;"></div>
+
+
+
+
+</body>
+</html>
