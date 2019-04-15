@@ -1,9 +1,9 @@
 <template>
   <div class="main">
     <!-- <div class="top"></div> -->
-      <div id="content" ref="wrapper" :style="{ height: wrapperHeight + 'px'}" style="overflow-x： hidden">
+      <!-- <div id="content" ref="wrapper" :style="{ height: wrapperHeight + 'px'}" style="overflow-x： hidden"> -->
         <template>
-          <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore" @bottom-status-change="handleBottomChange">
+          <!-- <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore" @bottom-status-change="handleBottomChange"> -->
             <ul>
               <li v-for="(item, index) in list" :key="index">
                 <a :href="item.link" class="list" target="_blank">
@@ -14,9 +14,9 @@
               </li>
             </ul>
             <div class="no" v-show="isBottom" style="text-align: center; font-size: 2.4vw; color: #333; height: 4vw; line-height: 4vw">已经到底啦</div>
-          </mt-loadmore>
+          <!-- </mt-loadmore> -->
         </template>
-      </div>
+      <!-- </div> -->
   </div>
 </template>
 
@@ -64,6 +64,7 @@ export default {
       this.wrapperHeight =
         document.documentElement.clientHeight -
         this.$refs.wrapper.getBoundingClientRect().top
+      console.log(this.wrapperHeight)
     }, 200)
   },
   created () {

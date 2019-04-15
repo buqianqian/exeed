@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="tab" ref="tab">
+    <div class="tab" ref="tab" :class="totab?'fix2':''">
       <span class="left" @click="cur=0">
         <i :class="{active:cur==0}">Say YES合集</i>
       </span>
@@ -8,7 +8,8 @@
         <i :class="{active:cur==1}">新闻中心</i>
       </span>
     </div>
-    <component :is="componentArr[cur]"></component>
+    <div :class="totab?'fix4':''"></div>
+    <component :is="componentArr[cur]" :class="totab?'fix3':''"></component>
   </div>
 </template>
 
@@ -16,12 +17,16 @@
 import Sayyes from '@/components/Sayyes.vue'
 import News from '@/components/News.vue'
 export default {
+  props: {
+    totab: Boolean
+  },
   components: {
     Sayyes,
     News
   },
   data () {
     return {
+      isShow: false,
       cur: 0,
       componentArr: ['Sayyes', 'News']
     }
@@ -52,14 +57,15 @@ export default {
       width: 1.8rem;
       font-style: normal;
       text-align: center;
-      border-bottom: .03rem solid #fff;
+      border-bottom: .05rem solid #fff;
+      box-sizing: border-box;
       margin-left: auto;
       margin-right: auto;
       cursor: pointer;
     }
 
     .active {
-      border-bottom: 3px solid #c38a6e;
+      border-bottom: .05rem solid #c38a6e;
     }
   }
   // .left {
@@ -86,5 +92,16 @@ export default {
   //   overflow: hidden;
   // }
 
+}
+.fix2 {
+  position: fixed;
+  top: 48px;
+  left: 0;
+}
+// .fix3 {
+//   margin-top: 88px;
+// }
+.fix4 {
+  height: 240px;
 }
 </style>

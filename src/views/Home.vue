@@ -1,12 +1,14 @@
 <template>
-  <div class="home">
-    <div ref="aa" style="margin-top: -20px" @mouseenter="scrollEvent">
-      <Banner class="banner1"></Banner>
-      <Tab class="tab1"></Tab>
-    </div>
-    <!-- <div class="scroll"></div> -->
-    <!-- <Main></Main> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+  <div style="overflow-x： hidden">
+      <!-- :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @bottom-status-change="handleBottomChange" -->
+      <div class="home" ref="aa">
+        <div ref="wrapper" :style="{ height: wrapperHeight + 'px'}">
+          <mt-loadmore :top-method="loadTop" ref="loadmore" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @bottom-status-change="handleBottomChange">
+            <Banner class="banner1" ref="bb" :class="isShow?'fix1': ''"></Banner>
+            <Tab class="tab1" :totab="isShow"></Tab>
+          </mt-loadmore>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -25,18 +27,49 @@ export default {
     Tab
     // Main
   },
+  data () {
+    return {
+      wrapperHeight: 0,
+      isBottom: false,
+      isShow: false,
+      allLoaded: false
+    }
+  },
   mounted () {
-    console.log(this.$refs.aa)
-    this.$refs.aa.addEventListener('scroll', this.handleScroll)
-    console.log(this.$refs.aa.getBoundingClientRect().top)
+    setTimeout(() => {
+      this.wrapperHeight =
+        document.documentElement.clientHeight -
+        this.$refs.wrapper.getBoundingClientRect().top
+      console.log(this.wrapperHeight)
+    }, 200)
+    this.$refs.aa.addEventListener('scroll', () => {
+      // console.log(this.$refs.aa.scrollTop)
+      if (this.$refs.aa.scrollTop >= 150) {
+        this.isShow = true
+      } else {
+        this.isShow = false
+      }
+    }, true)
   },
   methods: {
-    handleScroll () {
-      // var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-      console.log(111)
+    loadTop () {
+      // console.log(1111)
+      this.$refs.loadmore.onTopLoaded()
     },
-    scrollEvent (e) {
-      console.log(e.target)
+    loadBottom () {
+      this.$refs.loadmore.onBottomLoaded()
+      this.allLoaded = true
+    },
+    handleBottomChange () {
+      this.isBottom = false
+      var that = this
+      if (this.allLoaded === true) {
+        this.isBottom = true
+        setTimeout(function () {
+          that.isBottom = false
+        }, 2000)
+      }
+      this.allLoaded = false
     }
   }
 }
@@ -50,8 +83,10 @@ export default {
   flex-direction: column;
   overflow: hidden;
   overflow-y: scroll;
-
-  .scroll {
-  }
+}
+.fix1 {
+  position: fixed;
+  top: -150px;
+  left: 0;
 }
 </style>
