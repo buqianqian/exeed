@@ -3,7 +3,7 @@
       <!-- :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @bottom-status-change="handleBottomChange" -->
       <div class="home" ref="aa">
         <div ref="wrapper" :style="{ height: wrapperHeight + 'px'}">
-          <mt-loadmore :top-method="loadTop" ref="loadmore" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @bottom-status-change="handleBottomChange">
+          <mt-loadmore :top-method="loadTop" :bottomDistance="0" :topDistance="0" ref="loadmore" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @bottom-status-change="handleBottomChange">
             <Banner class="banner1" ref="bb" :class="isShow?'fix1': ''"></Banner>
             <Tab class="tab1" :totab="isShow"></Tab>
           </mt-loadmore>
@@ -13,10 +13,9 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
 import Banner from '@/components/Banner.vue'
 import Tab from '@/components/Tab.vue'
+import BScroll from 'better-scroll'
 // import Main from '@/components/Main.vue'
 
 export default {
@@ -32,7 +31,8 @@ export default {
       wrapperHeight: 0,
       isBottom: false,
       isShow: false,
-      allLoaded: false
+      allLoaded: false,
+      height: 1000
     }
   },
   mounted () {
@@ -40,21 +40,26 @@ export default {
       this.wrapperHeight =
         document.documentElement.clientHeight -
         this.$refs.wrapper.getBoundingClientRect().top
-      console.log(this.wrapperHeight)
     }, 200)
     this.$refs.aa.addEventListener('scroll', () => {
+      this.height = document.getElementsByClassName('mint-loadmore')[0].clientHeight
       // console.log(this.$refs.aa.scrollTop)
       if (this.$refs.aa.scrollTop >= 150) {
         this.isShow = true
       } else {
         this.isShow = false
       }
-    }, true)
+    }, false)
+    console.log(document.getElementsByClassName('mint-loadmore')[0].clientHeight)
+    this.$nextTick(() => {
+      this.scroll = new BScroll(this.$refs.wrapper, {})
+    })
   },
   methods: {
     loadTop () {
       // console.log(1111)
       this.$refs.loadmore.onTopLoaded()
+      this.$refs.aa.scrollTop = 0
     },
     loadBottom () {
       this.$refs.loadmore.onBottomLoaded()

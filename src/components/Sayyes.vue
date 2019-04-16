@@ -119,6 +119,8 @@ ul {
 .main {
   width: 100%;
   // height: 100vh;
+  overflow: hidden;
+  overflow-y: scroll;
   .list {
     display: block;
     background-color: #fff;
