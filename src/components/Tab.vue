@@ -95,7 +95,7 @@ export default {
 }
 .fix2 {
   position: fixed;
-  top: 48px;
+  top: 42px;
   left: 0;
 }
 // .fix3 {
