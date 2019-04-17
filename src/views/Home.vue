@@ -22,17 +22,14 @@ export default {
   name: 'home',
   components: {
     Banner,
-    // HelloWorld,
     Tab
-    // Main
   },
   data () {
     return {
       wrapperHeight: 0,
       isBottom: false,
       isShow: false,
-      allLoaded: false,
-      height: 1000
+      allLoaded: false
     }
   },
   mounted () {
@@ -42,7 +39,6 @@ export default {
         this.$refs.wrapper.getBoundingClientRect().top
     }, 200)
     this.$refs.aa.addEventListener('scroll', () => {
-      this.height = document.getElementsByClassName('mint-loadmore')[0].clientHeight
       // console.log(this.$refs.aa.scrollTop)
       if (this.$refs.aa.scrollTop >= 150) {
         this.isShow = true
@@ -50,10 +46,10 @@ export default {
         this.isShow = false
       }
     }, false)
-    console.log(document.getElementsByClassName('mint-loadmore')[0].clientHeight)
-    this.$nextTick(() => {
-      this.scroll = new BScroll(this.$refs.wrapper, {})
-    })
+    // console.log(document.getElementsByClassName('mint-loadmore')[0].clientHeight)
+    // this.$nextTick(() => {
+    //   this.scroll = new BScroll(this.$refs.wrapper, { click: true })
+    // })
   },
   methods: {
     loadTop () {
