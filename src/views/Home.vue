@@ -2,12 +2,14 @@
   <div style="overflow-x： hidden">
       <!-- :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @bottom-status-change="handleBottomChange" -->
       <div class="home" ref="aa">
-        <div ref="wrapper" :style="{ height: wrapperHeight + 'px'}">
-          <mt-loadmore :top-method="loadTop" ref="loadmore" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @bottom-status-change="handleBottomChange">
-            <Banner class="banner1" ref="bb" :class="isShow?'fix1': ''"></Banner>
-            <Tab class="tab1" :totab="isShow"></Tab>
-          </mt-loadmore>
-        </div>
+        <!-- <div ref="wrapper" :style="{ height: wrapperHeight + 'px'}"> -->
+          <div>
+            <!-- <mt-loadmore :top-method="loadTop" ref="loadmore" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @bottom-status-change="handleBottomChange"> -->
+              <Banner class="banner1" ref="bb" :class="isShow?'fix1': ''"></Banner>
+              <Tab class="tab1" :totab="isShow"></Tab>
+            <!-- </mt-loadmore> -->
+          </div>
+        <!-- </div> -->
       </div>
   </div>
 </template>
@@ -15,6 +17,7 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
+// import BScroll from 'better-scroll'
 import Banner from '@/components/Banner.vue'
 import Tab from '@/components/Tab.vue'
 // import Main from '@/components/Main.vue'
@@ -36,12 +39,12 @@ export default {
     }
   },
   mounted () {
-    setTimeout(() => {
-      this.wrapperHeight =
-        document.documentElement.clientHeight -
-        this.$refs.wrapper.getBoundingClientRect().top
-      console.log(this.wrapperHeight)
-    }, 200)
+    // setTimeout(() => {
+    //   this.wrapperHeight =
+    //     document.documentElement.clientHeight -
+    //     this.$refs.wrapper.getBoundingClientRect().top
+    //   console.log(this.wrapperHeight)
+    // }, 200)
     this.$refs.aa.addEventListener('scroll', () => {
       // console.log(this.$refs.aa.scrollTop)
       if (this.$refs.aa.scrollTop >= 150) {
@@ -50,6 +53,9 @@ export default {
         this.isShow = false
       }
     }, true)
+    // this.$nextTick(() => {
+    //   this.scroll = new BScroll(this.$refs.aa, {})
+    // })
   },
   methods: {
     loadTop () {
