@@ -1,4 +1,6 @@
 import Vue from 'vue'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 import App from './App.vue'
 import router from './router'
 import vueSwiper from 'vue-awesome-swiper'
@@ -13,7 +15,7 @@ Vue.component(Loadmore.name, Loadmore)
 
 Vue.component(Spinner.name, Spinner)
 
-Vue.use(vueSwiper)
+Vue.use(vueSwiper, axios, VueAxios)
 Vue.use(vueWaterfallEasy)
 Vue.use(VueLazyLoad, {
   error: require('@/assets/timg.gif'),

@@ -1,73 +1,35 @@
 <template>
   <div class="main">
-    <!-- <div class="top"></div> -->
-      <!-- <div id="content" ref="wrapper" :style="{height: wrapperHeight + 'px'}"> -->
-         <!-- :style="{height: wrapperHeight + 'px'}" -->
-        <template>
-          <!-- <mt-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="true" ref="loadmore" @bottom-status-change="handleBottomChange"> -->
-            <ul>
-              <li v-for="(item, index) in list" :key="index">
-                <a :href="item.link" class="list" target="blank">
-                  <p class="title">{{item.title}}</p>
-                  <p class="time">{{item.time}}</p>
-                  <img v-lazy="item.src" style="width: 100%; margin-top: 4.2vw">
-                </a>
-              </li>
-            </ul>
-            <div class="no" v-show="isBottom" style="text-align: center; font-size: 2.4vw; color: #333; height: 4vw; line-height: 4vw">已经到底啦</div>
-          <!-- </mt-loadmore> -->
-        </template>
-      <!-- </div> -->
+    <template>
+      <ul>
+        <li v-for="(item, index) in list" :key="index">
+          <a :href="item.link" class="list" target="blank">
+            <p class="title">{{item.title}}</p>
+            <p class="time">{{item.time}}</p>
+            <img v-lazy="item.src" style="width: 100%; margin-top: 4.2vw">
+          </a>
+        </li>
+      </ul>
+      <div class="no" v-show="isBottom" style="text-align: center; font-size: 2.4vw; color: #333; height: 4vw; line-height: 4vw">已经到底啦</div>
+    </template>
   </div>
 </template>
 
 <script>
-import { setTimeout } from 'timers'
 export default {
   components: {
   },
   data () {
     return {
       isBottom: false,
-      wrapperHeight: 0,
       isShow: false,
-      allLoaded: false,
       list: []
     }
   },
   methods: {
-    // init () {
-    //   this.wrapperHeight =
-    //     document.documentElement.clientHeight -
-    //     this.$refs.wrapper.getBoundingClientRect().top
-    // },
-    handleBottomChange () {
-      this.isBottom = false
-      var that = this
-      if (this.allLoaded === true) {
-        this.isBottom = true
-        setTimeout(function () {
-          that.isBottom = false
-        }, 2000)
-      }
-      this.allLoaded = false
-    },
-    loadTop () {
-      this.$refs.loadmore.onTopLoaded()
-    },
-    loadBottom () {
-      this.$refs.loadmore.onBottomLoaded()
-      this.getList()
-      this.allLoaded = true
-    },
     getList () {
-      console.log(222)
+      console.log(1111)
     }
-  },
-  mounted () {
-    // setTimeout(() => {
-    //   this.init()
-    // }, 200)
   },
   created () {
     this.list = [{

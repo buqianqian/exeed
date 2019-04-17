@@ -3,7 +3,7 @@
       <!-- :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @bottom-status-change="handleBottomChange" -->
       <div class="home" ref="aa">
         <div ref="wrapper" :style="{ height: wrapperHeight + 'px'}">
-          <mt-loadmore :bottomDistance="0" :topDistance="0" ref="loadmore" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @bottom-status-change="handleBottomChange">
+          <mt-loadmore :top-method="loadTop" :bottomDistance="0" :topDistance="0" ref="loadmore" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @bottom-status-change="handleBottomChange">
             <Banner class="banner1" ref="bb" :class="isShow?'fix1': ''"></Banner>
             <Tab class="tab1" :totab="isShow"></Tab>
           </mt-loadmore>
@@ -15,8 +15,6 @@
 <script>
 import Banner from '@/components/Banner.vue'
 import Tab from '@/components/Tab.vue'
-// import BScroll from 'better-scroll'
-// import Main from '@/components/Main.vue'
 
 export default {
   name: 'home',
@@ -29,7 +27,8 @@ export default {
       wrapperHeight: 0,
       isBottom: false,
       isShow: false,
-      allLoaded: false
+      allLoaded: false,
+      height: 0
     }
   },
   mounted () {
@@ -39,8 +38,8 @@ export default {
         this.$refs.wrapper.getBoundingClientRect().top
     }, 200)
     this.$refs.aa.addEventListener('scroll', () => {
-      console.log(this.$refs.aa.scrollTop)
-      if (this.$refs.aa.scrollTop >= 150) {
+      // console.log(this.$refs.aa.scrollTop)
+      if (this.$refs.aa.scrollTop >= 120 / 667 * this.height) {
         this.isShow = true
       } else {
         this.isShow = false
@@ -62,6 +61,10 @@ export default {
     loadBottom () {
       this.$refs.loadmore.onBottomLoaded()
       this.allLoaded = true
+      console.log(111111)
+      // this.axios.get('').then((res) => {
+      //   console.log(res)
+      // })
     },
     handleBottomChange () {
       this.isBottom = false
@@ -75,12 +78,7 @@ export default {
       this.allLoaded = false
     },
     getFixPosition () {
-      var height = document.body.clientHeight
-      // console.log(height)
-      // console.log('&&&&&&&&&&&&&&&&&' + 120 / 667 * height)
-      console.log(document.getElementsByClassName("fix1"))
-      // $('.fix1').css('top', '134px')
-      // console.log($('.banner1 .fix1'))
+      this.height = document.body.clientHeight
     }
   }
 }

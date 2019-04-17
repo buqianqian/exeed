@@ -60,7 +60,7 @@ export default {
 .banner {
   width: 100%;
   min-height: 3.5rem;
-  // height: 48vw;
+  height: 50vw;
   // position: fixed;
   // left: 0;
   // right: 0;

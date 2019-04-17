@@ -96,13 +96,13 @@ export default {
 }
 .fix2 {
   position: fixed;
-  top: 42px;
+  top:calc(68/667*100vh);
   left: 0;
 }
 // .fix3 {
 //   margin-top: 88px;
 // }
 .fix4 {
-  height: 195px;
+  height: calc(230 /667*100vh);
 }
 </style>
