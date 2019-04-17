@@ -1,13 +1,12 @@
 <template>
   <div class="main">
     <!-- <div class="top"></div> -->
-      <!-- <div id="content" ref="wrapper" :style="{height: wrapperHeight + 'px'}"> -->
-         <!-- :style="{height: wrapperHeight + 'px'}" -->
+      <!-- <div id="content" ref="wrapper" :style="{ height: wrapperHeight + 'px'}" style="overflow-x： hidden"> -->
         <template>
-          <!-- <mt-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="true" ref="loadmore" @bottom-status-change="handleBottomChange"> -->
+          <!-- <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore" @bottom-status-change="handleBottomChange"> -->
             <ul>
               <li v-for="(item, index) in list" :key="index">
-                <a :href="item.link" class="list" target="blank">
+                <a :href="item.link" class="list" target="_blank">
                   <p class="title">{{item.title}}</p>
                   <p class="time">{{item.time}}</p>
                   <img v-lazy="item.src" style="width: 100%; margin-top: 4.2vw">
@@ -36,11 +35,6 @@ export default {
     }
   },
   methods: {
-    // init () {
-    //   this.wrapperHeight =
-    //     document.documentElement.clientHeight -
-    //     this.$refs.wrapper.getBoundingClientRect().top
-    // },
     handleBottomChange () {
       this.isBottom = false
       var that = this
@@ -53,6 +47,7 @@ export default {
       this.allLoaded = false
     },
     loadTop () {
+      console.log(1111)
       this.$refs.loadmore.onTopLoaded()
     },
     loadBottom () {
@@ -61,13 +56,16 @@ export default {
       this.allLoaded = true
     },
     getList () {
-      console.log(222)
+      console.log(2222)
     }
   },
   mounted () {
-    // setTimeout(() => {
-    //   this.init()
-    // }, 200)
+    setTimeout(() => {
+      this.wrapperHeight =
+        document.documentElement.clientHeight -
+        this.$refs.wrapper.getBoundingClientRect().top
+      console.log(this.wrapperHeight)
+    }, 200)
   },
   created () {
     this.list = [{
@@ -117,7 +115,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 #content {
   overflow-y: scroll;
 }
@@ -130,9 +128,6 @@ ul {
 }
 .main {
   width: 100%;
-  // height: 100vh;
-  overflow: hidden;
-  overflow-y: scroll;
   .list {
     display: block;
     background-color: #fff;
