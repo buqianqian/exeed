@@ -18,7 +18,8 @@ import Sayyes from '@/components/Sayyes.vue'
 import News from '@/components/News.vue'
 export default {
   props: {
-    totab: Boolean
+    totab: Boolean,
+    totab2: Boolean
   },
   components: {
     Sayyes,
@@ -102,6 +103,6 @@ export default {
 //   margin-top: 88px;
 // }
 .fix4 {
-  height: 240px;
+  height: 195px;
 }
 </style>

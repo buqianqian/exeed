@@ -11,6 +11,7 @@
 }
 html {
   font-size: 13.333vw;
+  // font-size: 10px;
 }
 html,body {
   background-color: #F2F5F7;

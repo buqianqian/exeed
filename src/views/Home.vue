@@ -3,7 +3,7 @@
       <!-- :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @bottom-status-change="handleBottomChange" -->
       <div class="home" ref="aa">
         <div ref="wrapper" :style="{ height: wrapperHeight + 'px'}">
-          <mt-loadmore :top-method="loadTop" :bottomDistance="0" :topDistance="0" ref="loadmore" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @bottom-status-change="handleBottomChange">
+          <mt-loadmore :bottomDistance="0" :topDistance="0" ref="loadmore" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @bottom-status-change="handleBottomChange">
             <Banner class="banner1" ref="bb" :class="isShow?'fix1': ''"></Banner>
             <Tab class="tab1" :totab="isShow"></Tab>
           </mt-loadmore>
@@ -15,7 +15,7 @@
 <script>
 import Banner from '@/components/Banner.vue'
 import Tab from '@/components/Tab.vue'
-import BScroll from 'better-scroll'
+// import BScroll from 'better-scroll'
 // import Main from '@/components/Main.vue'
 
 export default {
@@ -39,7 +39,7 @@ export default {
         this.$refs.wrapper.getBoundingClientRect().top
     }, 200)
     this.$refs.aa.addEventListener('scroll', () => {
-      // console.log(this.$refs.aa.scrollTop)
+      console.log(this.$refs.aa.scrollTop)
       if (this.$refs.aa.scrollTop >= 150) {
         this.isShow = true
       } else {
@@ -48,8 +48,10 @@ export default {
     }, false)
     // console.log(document.getElementsByClassName('mint-loadmore')[0].clientHeight)
     // this.$nextTick(() => {
-    //   this.scroll = new BScroll(this.$refs.wrapper, { click: true })
+    //   this.scroll = new BScroll(this.$refs.wrapper, {})
+    //   alert(1)
     // })
+    this.getFixPosition()
   },
   methods: {
     loadTop () {
@@ -71,6 +73,14 @@ export default {
         }, 2000)
       }
       this.allLoaded = false
+    },
+    getFixPosition () {
+      var height = document.body.clientHeight
+      // console.log(height)
+      // console.log('&&&&&&&&&&&&&&&&&' + 120 / 667 * height)
+      console.log(document.getElementsByClassName("fix1"))
+      // $('.fix1').css('top', '134px')
+      // console.log($('.banner1 .fix1'))
     }
   }
 }
@@ -87,7 +97,7 @@ export default {
 }
 .fix1 {
   position: fixed;
-  top: -150px;
+  top: calc(-120 /667*100vh);
   left: 0;
 }
 </style>
