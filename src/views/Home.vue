@@ -15,7 +15,7 @@
 <script>
 import Banner from '@/components/Banner.vue'
 import Tab from '@/components/Tab.vue'
-// import BScroll from 'better-scroll'
+import BScroll from 'better-scroll'
 // import Main from '@/components/Main.vue'
 
 export default {
@@ -48,7 +48,7 @@ export default {
     }, false)
     // console.log(document.getElementsByClassName('mint-loadmore')[0].clientHeight)
     // this.$nextTick(() => {
-    //   this.scroll = new BScroll(this.$refs.wrapper, {})
+    //   this.scroll = new BScroll(this.$refs.wrapper, { click: true })
     // })
   },
   methods: {
