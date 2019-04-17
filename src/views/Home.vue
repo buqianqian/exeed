@@ -2,69 +2,69 @@
   <div style="overflow-x： hidden">
       <!-- :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @bottom-status-change="handleBottomChange" -->
       <div class="home" ref="aa">
-        <!-- <div ref="wrapper" :style="{ height: wrapperHeight + 'px'}"> -->
-          <div>
-            <!-- <mt-loadmore :top-method="loadTop" ref="loadmore" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @bottom-status-change="handleBottomChange"> -->
-              <Banner class="banner1" ref="bb" :class="isShow?'fix1': ''"></Banner>
-              <Tab class="tab1" :totab="isShow"></Tab>
-            <!-- </mt-loadmore> -->
-          </div>
-        <!-- </div> -->
+        <div ref="wrapper" :style="{ height: wrapperHeight + 'px'}">
+          <mt-loadmore :top-method="loadTop" :bottomDistance="0" :topDistance="0" ref="loadmore" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @bottom-status-change="handleBottomChange">
+            <Banner class="banner1" ref="bb" :class="isShow?'fix1': ''"></Banner>
+            <Tab class="tab1" :totab="isShow"></Tab>
+          </mt-loadmore>
+        </div>
       </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
-// import BScroll from 'better-scroll'
 import Banner from '@/components/Banner.vue'
 import Tab from '@/components/Tab.vue'
-// import Main from '@/components/Main.vue'
 
 export default {
   name: 'home',
   components: {
     Banner,
-    // HelloWorld,
     Tab
-    // Main
   },
   data () {
     return {
       wrapperHeight: 0,
       isBottom: false,
       isShow: false,
-      allLoaded: false
+      allLoaded: false,
+      height: 0
     }
   },
   mounted () {
-    // setTimeout(() => {
-    //   this.wrapperHeight =
-    //     document.documentElement.clientHeight -
-    //     this.$refs.wrapper.getBoundingClientRect().top
-    //   console.log(this.wrapperHeight)
-    // }, 200)
+    setTimeout(() => {
+      this.wrapperHeight =
+        document.documentElement.clientHeight -
+        this.$refs.wrapper.getBoundingClientRect().top
+    }, 200)
     this.$refs.aa.addEventListener('scroll', () => {
       // console.log(this.$refs.aa.scrollTop)
-      if (this.$refs.aa.scrollTop >= 150) {
+      if (this.$refs.aa.scrollTop >= 120 / 667 * this.height) {
         this.isShow = true
       } else {
         this.isShow = false
       }
-    }, true)
+    }, false)
+    // console.log(document.getElementsByClassName('mint-loadmore')[0].clientHeight)
     // this.$nextTick(() => {
-    //   this.scroll = new BScroll(this.$refs.aa, {})
+    //   this.scroll = new BScroll(this.$refs.wrapper, {})
+    //   alert(1)
     // })
+    this.getFixPosition()
   },
   methods: {
     loadTop () {
       // console.log(1111)
       this.$refs.loadmore.onTopLoaded()
+      this.$refs.aa.scrollTop = 0
     },
     loadBottom () {
       this.$refs.loadmore.onBottomLoaded()
       this.allLoaded = true
+      console.log(111111)
+      // this.axios.get('').then((res) => {
+      //   console.log(res)
+      // })
     },
     handleBottomChange () {
       this.isBottom = false
@@ -76,6 +76,9 @@ export default {
         }, 2000)
       }
       this.allLoaded = false
+    },
+    getFixPosition () {
+      this.height = document.body.clientHeight
     }
   }
 }
@@ -92,7 +95,7 @@ export default {
 }
 .fix1 {
   position: fixed;
-  top: -150px;
+  top: calc(-120 /667*100vh);
   left: 0;
 }
 </style>
