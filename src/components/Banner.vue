@@ -52,6 +52,15 @@ export default {
     }
   },
   mounted () {
+    if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+      console.log(1111111)
+    } else {
+      console.log(2222)
+      // let width = this.$refs.elememt.style.width
+      // console.log(width)
+      // document.getElementsByClassName('banner')[0].style.height = '38vh'
+      document.getElementsByClassName('banner')[0].style.height = '38vh'
+    }
   }
 }
 </script>
@@ -59,7 +68,7 @@ export default {
 <style lang="less" scoped>
 .banner {
   width: 100%;
-  min-height: 3.5rem;
+  // min-height: 3.5rem;
   height: 50vw;
   // position: fixed;
   // left: 0;
@@ -70,15 +79,5 @@ export default {
   img {
     width: 100%;
   }
-}
-.shade {
-  width: 100%;
-  height: 48vw;
-  // position: fixed;
-  // left: 0;
-  // right: 0;
-  // z-index: 1;
-  overflow: hidden;
-  background-color: #fff;
 }
 </style>

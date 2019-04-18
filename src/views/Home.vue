@@ -97,7 +97,6 @@ export default {
         }
       })
       this.scroll.refresh()
-      alert(1)
     })
     this.getFixPosition()
   },
@@ -192,9 +191,9 @@ export default {
   margin-top: calc(-40 /667*100vh);
 }
 .fade-enter-active {
-      transition: opacity 2s
+  transition: opacity 2s
 }
 .fade-enter, .fade-leave-active {
-      opacity: 0
+  opacity: 0
 }
 </style>
