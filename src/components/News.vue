@@ -13,7 +13,7 @@
                 </a>
               </li>
             </ul>
-            <div class="no" v-show="isBottom" style="text-align: center; font-size: 2.4vw; color: #333; height: 4vw; line-height: 4vw">已经到底啦</div>
+            <!-- <div class="no" v-show="isBottom" style="text-align: center; font-size: 2.4vw; color: #333; height: 4vw; line-height: 4vw">已经到底啦</div> -->
           <!-- </mt-loadmore> -->
         </template>
       <!-- </div> -->
@@ -21,51 +21,51 @@
 </template>
 
 <script>
-import { setTimeout } from 'timers'
+// import { setTimeout } from 'timers'
 export default {
   components: {
   },
   data () {
     return {
-      isBottom: false,
-      wrapperHeight: 0,
+      // isBottom: false,
+      // wrapperHeight: 0,
       isShow: false,
-      allLoaded: false,
+      // allLoaded: false,
       list: []
     }
   },
   methods: {
-    handleBottomChange () {
-      this.isBottom = false
-      var that = this
-      if (this.allLoaded === true) {
-        this.isBottom = true
-        setTimeout(function () {
-          that.isBottom = false
-        }, 2000)
-      }
-      this.allLoaded = false
-    },
-    loadTop () {
-      console.log(1111)
-      this.$refs.loadmore.onTopLoaded()
-    },
-    loadBottom () {
-      this.$refs.loadmore.onBottomLoaded()
-      this.getList()
-      this.allLoaded = true
-    },
+    // handleBottomChange () {
+    //   this.isBottom = false
+    //   var that = this
+    //   if (this.allLoaded === true) {
+    //     this.isBottom = true
+    //     setTimeout(function () {
+    //       that.isBottom = false
+    //     }, 2000)
+    //   }
+    //   this.allLoaded = false
+    // },
+    // loadTop () {
+    //   console.log(1111)
+    //   this.$refs.loadmore.onTopLoaded()
+    // },
+    // loadBottom () {
+    //   this.$refs.loadmore.onBottomLoaded()
+    //   this.getList()
+    //   this.allLoaded = true
+    // },
     getList () {
       console.log(2222)
     }
   },
   mounted () {
-    setTimeout(() => {
-      this.wrapperHeight =
-        document.documentElement.clientHeight -
-        this.$refs.wrapper.getBoundingClientRect().top
-      console.log(this.wrapperHeight)
-    }, 200)
+    // setTimeout(() => {
+    //   this.wrapperHeight =
+    //     document.documentElement.clientHeight -
+    //     this.$refs.wrapper.getBoundingClientRect().top
+    //   console.log(this.wrapperHeight)
+    // }, 200)
   },
   created () {
     this.list = [{
