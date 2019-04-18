@@ -20,7 +20,7 @@ Vue.use(vueWaterfallEasy)
 Vue.use(VueLazyLoad, {
   error: require('@/assets/timg.gif'),
   loading: require('@/assets/timg.gif'),
-  preload: 1,
+  preload: 0.5,
   attempt: 1,
   observe: true
 })

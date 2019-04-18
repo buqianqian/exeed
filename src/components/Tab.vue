@@ -8,7 +8,6 @@
         <i :class="{active:cur==1}">新闻中心</i>
       </span>
     </div>
-    <div :class="totab?'fix4':''"></div>
     <component :is="componentArr[cur]" :class="totab?'fix3':''"></component>
   </div>
 </template>
@@ -94,15 +93,17 @@ export default {
   // }
 
 }
-.fix2 {
-  position: fixed;
-  top:calc(68/667*100vh);
-  left: 0;
-}
+// .fix2 {
+//   position: fixed;
+//   top:calc(48/667*100vh);
+//   left: 0;
+// }
 // .fix3 {
 //   margin-top: 88px;
 // }
-.fix4 {
-  height: calc(230 /667*100vh);
-}
+// .fix4 {
+//   height: calc(250 /667*100vh);
+// }
+// .tab .fixOnTop {
+// }
 </style>
