@@ -97,7 +97,6 @@ export default {
         }
       })
       this.scroll.refresh()
-      alert(1)
     })
     this.getFixPosition()
   },

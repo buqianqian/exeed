@@ -59,7 +59,7 @@ export default {
 <style lang="less" scoped>
 .banner {
   width: 100%;
-  min-height: 3.5rem;
+  // min-height: 3.5rem;
   height: 50vw;
   // position: fixed;
   // left: 0;
